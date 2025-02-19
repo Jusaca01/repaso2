@@ -15,7 +15,7 @@ services:
     image: cidraque/app_repaso2:v1
     container_name: app_repaso2
     ports:
-      - "8030:80"
+      - "8080:80"
     depends_on:
       - db
 
