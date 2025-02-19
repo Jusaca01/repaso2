@@ -1,0 +1,31 @@
+services:
+  db:
+    image: cidraque/repaso2:v1
+    container_name: repaso2
+    
+    environment:
+      MYSQL_ROOT_PASSWORD: contrasenyaRoot
+      MYSQL_DATABASE: cine
+      MYSQL_USER: usuario1
+      MYSQL_PASSWORD: contrasenyaUsuario1
+    ports:
+      - "3306:3306"
+
+  php:
+    image: cidraque/app_repaso2:v1
+    container_name: app_repaso2
+    ports:
+      - "8030:80"
+    depends_on:
+      - db
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: contenedorPhpMyAdmin
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: contrasenyaRoot
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
